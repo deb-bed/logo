@@ -3,14 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0000FF">
-    <title>PWA Strona</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="assets/manifest.json">
+    <title>Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: url('https://i.imgur.com/ya0BoNL.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 360px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .logo img {
+            width: 80px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .login-box {
+            text-align: left;
+        }
+
+        .login-box label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .login-box input:focus {
+            border-color: #007bff;
+        }
+
+        .forgot-password {
+            display: block;
+            margin-top: 8px;
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        #loginBtn {
+            width: 100%;
+            background-color: #0056b3;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+        }
+
+        #loginBtn:hover {
+            background-color: #003d80;
+        }
+
+        .footer img {
+            width: 100px;
+            margin: 20px 0 5px;
+        }
+
+        .footer p {
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <button class="login-button">Zaloguj się</button>
-    </div>
-    <script src="script.js"></script>
+
+        <!-- Dynamic Greeting -->
+        <h1 id="greeting">Dzień dobry!</h1> <!-- To jest odpowiedzialne za wyświetlanie powitania -->
+        <p>Zaloguj się do aplikacji.</p>
+
+        <!-- Login Form -->
+        <div class="login-box">
+            <label for="password">Hasło</label>
+            <input type="password" id="password" placeholder="Wpisz hasło">
+            <a href="#" class="forgot-password">Nie pamiętasz hasła?</a>
+        </div>
+
+        <!-- Login Button -->
+        <button id="loginBtn">Zaloguj się</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const greetingElement = document.getElementById("greeting"); // To jest odpowiedzialne za wyświetlanie powitania
+            const loginBtn = document.getElementById("loginBtn");
+
+            function updateGreeting() {
+                const currentHour = new Date().getHours();
+                if (currentHour >= 7 && currentHour < 17) {
+                    greetingElement.textContent = "Dzień dobry!";
+                } else {
+                    greetingElement.textContent = "Dobry wieczór!";
+                }
+            }
+
+            updateGreeting();
+
+            loginBtn.addEventListener("click", function() {
+                window.location.href = "dashboard.html";
+            });
+        });
+    </script>
 </body>
 </html>
