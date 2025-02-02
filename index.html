@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moja Prosta PWA</title>
+    <title>Moja PWA</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="assets/manifest.json">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <div class="logo">
         <img src="https://i.imgur.com/2lzBgV2.jpg" alt="Logo">
     </div>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(registration => console.log('Service Worker zarejestrowany!', registration))
+                .catch(error => console.log('Rejestracja Service Workera nie powiodła się:', error));
+        }
+    </script>
 </body>
 </html>
