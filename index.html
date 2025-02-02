@@ -3,152 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="assets/manifest.json">
-    <title>Login Page</title>
+    <title>mObywatel</title>
+    <link rel="manifest" href="manifest.json">
     <style>
-        * {
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
             background: url('https://i.imgur.com/ya0BoNL.jpg') no-repeat center center fixed;
             background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            width: 360px;
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-family: Arial, sans-serif;
             text-align: center;
+            color: #333;
         }
 
-        .logo img {
-            width: 80px;
-            margin-bottom: 10px;
-        }
-
-        h1 {
-            font-size: 24px;
+        .greeting {
+            font-size: 22px;
+            font-weight: bold;
             margin: 10px 0;
-            font-weight: bold;
         }
 
-        p {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        .login-box {
-            text-align: left;
-        }
-
-        .login-box label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .login-box input {
-            width: 100%;
+        .password-field {
+            width: 80%;
+            max-width: 300px;
             padding: 12px;
             border: 1px solid #ccc;
             border-radius: 8px;
-            outline: none;
             font-size: 16px;
+            outline: none;
+            margin: 10px 0;
         }
 
-        .login-box input:focus {
-            border-color: #007bff;
-        }
-
-        .forgot-password {
-            display: block;
-            margin-top: 8px;
-            color: #0056b3;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .forgot-password:hover {
-            text-decoration: underline;
-        }
-
-        #loginBtn {
-            width: 100%;
-            background-color: #0056b3;
+        .login-button {
+            background-color: #007bff;
             color: white;
-            padding: 15px;
             border: none;
-            border-radius: 25px;
-            font-size: 18px;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 15px;
+            transition: background 0.3s ease;
+            margin-bottom: 20px;
         }
 
-        #loginBtn:hover {
-            background-color: #003d80;
-        }
-
-        .footer img {
-            width: 100px;
-            margin: 20px 0 5px;
-        }
-
-        .footer p {
-            font-size: 12px;
-            color: #666;
+        .login-button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Herb_Polski.svg/1200px-Herb_Polski.svg.png" alt="mObywatel Logo" width="80">
+    <h1>mObywatel</h1>
 
-        <!-- Dynamic Greeting -->
-        <h1 id="greeting">Dzień dobry!</h1> <!-- To jest odpowiedzialne za wyświetlanie powitania -->
-        <p>Zaloguj się do aplikacji.</p>
+    <div class="greeting" id="greeting"></div>
 
-        <!-- Login Form -->
-        <div class="login-box">
-            <label for="password">Hasło</label>
-            <input type="password" id="password" placeholder="Wpisz hasło">
-            <a href="#" class="forgot-password">Nie pamiętasz hasła?</a>
-        </div>
+    <div>Zaloguj się do aplikacji</div>
+    <input type="password" class="password-field" placeholder="Hasło">
 
-        <!-- Login Button -->
-        <button id="loginBtn">Zaloguj się</button>
+    <button class="login-button" onclick="window.location.href='dashboard.html'">Zaloguj się</button>
+
+    <div style="position: absolute; bottom: 20px; width: 100%; text-align: center;">
+        <div>COI</div>
+        <div>Ministerstwo Cyfryzacji</div>
+        <div>wersja 4.50.1 (3)</div>
+    </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const greetingElement = document.getElementById("greeting"); // To jest odpowiedzialne za wyświetlanie powitania
-            const loginBtn = document.getElementById("loginBtn");
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js');
+        }
 
-            function updateGreeting() {
-                const currentHour = new Date().getHours();
-                if (currentHour >= 7 && currentHour < 17) {
-                    greetingElement.textContent = "Dzień dobry!";
-                } else {
-                    greetingElement.textContent = "Dobry wieczór!";
-                }
-            }
-
-            updateGreeting();
-
-            loginBtn.addEventListener("click", function() {
-                window.location.href = "dashboard.html";
-            });
-        });
+        const hour = new Date().getHours();
+        document.getElementById('greeting').textContent = (hour >= 7 && hour < 17) ? "Dzień dobry!" : "Dobry wieczór!";
     </script>
 </body>
 </html>
